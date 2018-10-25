@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {Link } from "react-router-dom";
 import {bindActionCreators} from 'redux';
+import {withRouter} from "react-router-dom";
 
 import * as singleItemAction from "./../actions/singleItemActions";
 
@@ -25,7 +26,7 @@ class ListForm extends Component {
         this.props.actions.singleItemActions(newObj);
         //this.props.createItem(newObj);    //another way to dispatch action
         alert("Item has been added successfully");
-       // this.props.history.push("/list");
+       this.props.history.push("/list");
     }
     render() {
         const {newId ,newName , newAge ,newDept , newDescription } = this.state;     
@@ -59,4 +60,4 @@ const mapDispatchToProps = dispatch => ({
     actions : bindActionCreators(singleItemAction,dispatch),
    // createItem : (item) => dispatch(singleItemAction.singleItemActions(item))  //another way to dispatch action
 });
-export default connect(null, mapDispatchToProps)(ListForm);
+export default withRouter(connect(null, mapDispatchToProps)(ListForm));

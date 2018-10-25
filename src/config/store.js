@@ -1,4 +1,5 @@
-import {combineReducers , createStore} from "redux";
+import {combineReducers , createStore, applyMiddleware} from "redux";
+import thunk from "redux-thunk";
 
 import list from "./../reducers/listReducers";
 import singleItem from "./../reducers/singleItemReducers";
@@ -10,4 +11,4 @@ export default createStore(combineReducers({
     singleItem,
     description,
     counterReducer
-}));
+}),applyMiddleware(thunk));
